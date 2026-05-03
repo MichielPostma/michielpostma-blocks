@@ -1,0 +1,19 @@
+# Netlify config voor Claude Blocks repo
+# Serveert /blocks/*.html bestanden met juiste CORS headers
+
+[build]
+  publish = "."
+
+# CORS headers zodat WP de blocks via wp_remote_get kan ophalen
+[[headers]]
+  for = "/blocks/*"
+    [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "public, max-age=300"
+    Content-Type = "text/html; charset=utf-8"
+
+# Optioneel: redirect root naar overzicht
+[[redirects]]
+  from = "/"
+  to = "/index.html"
+  status = 200
